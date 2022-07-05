@@ -1,0 +1,36 @@
+{% extends "./base.html" %}
+
+{% block title %}Edicion Simulador{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+            <h2>Editar Valores</h2>
+            <div class="card">
+                <div class="card-body">
+                    <form action="/consumerapp/device/update/{{codigo.id}}/" method="POST">{% csrf_token %}
+                        <div class="form-group">
+                            <input type="text" id="id" name="id" value="{{codigo.id}}" class="form-control" placeholder="id"
+                                minlength="1" maxlength="3" readonly required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="Values" name="Values" value="{{codigo.Values}}" class="form-control" placeholder="Valor_simulador"
+                                minlength="1" maxlength="3" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="date" id="Time" name="Time"  value="{{codigo.Time}}" class="form-control" placeholder=" "
+                                maxlength=" "  required>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success btn-block text-white">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+   
+
+{% endblock %}

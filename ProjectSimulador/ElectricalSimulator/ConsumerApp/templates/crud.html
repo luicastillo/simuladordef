@@ -1,0 +1,62 @@
+{% extends "./base.html" %}
+
+{% block title %}Crud Simulador{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+            <h2>Agregar Valores</h2>
+            <div class="card">
+                <div class="card-body">
+                    <form action="/consumerapp/device/list/" method="POST">{% csrf_token %}
+                        <div class="form-group">
+                            <input type="text" id="Values" name="Values" class="form-control" placeholder="Valor_simulador"
+                                minlength="1" maxlength="3" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="date" id="Time" name="Time" class="form-control" placeholder=" "
+                                maxlength=" " required>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success btn-block text-white">Guardar</button>
+                        </div>
+                        <td><a href="/consumerapp/main/" class="btn btn-info">Correr_Producer</a></td>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class = "col-sm-12 col-md-6 col-lg-8 col-xl-8">
+            <h1>Listado de registros Simulador</h1>
+            <div class="table responsive">
+                <table class = "table table-striped py-2">
+                    <thead>
+                        <tr>
+                            <th>Valor medida</th>
+                            <th>Fecha</th>
+                            <th colspan="2">Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for l in simulador %}
+                        <tr>
+                            <td>{{l.Values}}</td>
+                            <td>{{l.Time}}</td>
+                            <td><a href="/consumerapp/editioncrud/{{l.id}}/" class="btn btn-info">Editar</a></td>
+                            <td><a href="/consumerapp/device/delete/{{l.id}}/" class="btn btn-danger btnEliminacion">Eliminar</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>           
+
+        </div>
+
+    </div>
+   
+
+{% endblock %}
